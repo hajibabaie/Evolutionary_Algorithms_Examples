@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import os
 
 
-def plot(solution, model_data):
+def plot(solution, model_data, solution_method):
 
 
     solution = solution.solution_parsed["x_parsed"]
@@ -18,4 +18,4 @@ def plot(solution, model_data):
         plt.text(location_x[solution[0, i]],
                  location_y[solution[0, i]], str(i))
     plt.legend()
-    plt.savefig("./figures/assignment.png")
+    plt.savefig(f"./figures/assignment_{solution_method}.png")

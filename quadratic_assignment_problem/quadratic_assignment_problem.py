@@ -1,5 +1,6 @@
 from evolutionary_algorithms_examples.quadratic_assignment_problem.data import Data
 import numpy as np
+import copy
 
 
 class QuadraticAssignmentProblem:
@@ -20,7 +21,16 @@ class QuadraticAssignmentProblem:
 
         distances = self._model_data["distances"]
 
-        x = x["permutation1D"][0]
+        if "permutation1D" in x.keys():
+
+            x = x["permutation1D"][0]
+
+        elif "real1D" in x.keys():
+
+            x = x["real1D"][0]
+            x = copy.deepcopy(x)
+            x = np.argsort(x, axis=1)
+
 
         x_parsed = self._parsed_solution(x)
 
