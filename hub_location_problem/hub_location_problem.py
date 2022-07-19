@@ -1,5 +1,6 @@
 from evolutionary_algorithms_examples.hub_location_problem.data import Data
 import numpy as np
+import copy
 
 
 
@@ -12,7 +13,14 @@ class HubLocationProblem:
 
     def cost_function(self, x):
 
-        x = x["binary1D"][0]
+        for type_of_variable in x.keys():
+            if type_of_variable == "binary1D":
+                x = x["binary1D"][0]
+            elif type_of_variable == "real1D":
+                x = x["real1D"][0]
+                x = copy.deepcopy(x)
+                x[:, x[0, :] >= 0.5] = 1
+                x[:, x[0, :] < 0.5] = 0
 
         x_inf = np.copy(x)
 
