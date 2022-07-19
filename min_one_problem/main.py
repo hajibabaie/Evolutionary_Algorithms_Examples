@@ -35,7 +35,7 @@ def main():
                           type_number_of_variables=type_number_of_variables,
                           min_range_of_variables=0,
                           max_range_of_variables=1,
-                          max_iteration=7,
+                          max_iteration=8,
                           number_of_particles=150,
                           inertia_rate=0.7298,
                           inertia_damping_rate=1,
