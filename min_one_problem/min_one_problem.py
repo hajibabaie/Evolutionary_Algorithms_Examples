@@ -1,3 +1,4 @@
+import copy
 import numpy as np
 
 
@@ -8,6 +9,7 @@ def cost_function(x):
             x = x["binary1D"][0]
         elif type_of_variable == "real1D":
             x = x["real1D"][0]
+            x = copy.deepcopy(x)
             x[:, x[0, :] >= 0.5] = 1
             x[:, x[0, :] < 0.5] = 0
 
