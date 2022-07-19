@@ -42,7 +42,6 @@ def main():
                           personal_learning_rate=1.4962,
                           global_learning_rate=1.4962,
                           tempo_limit=True,
-                          mirroring_effect=False,
                           plot_cost_function=True,
                           y_axis="log")
 
