@@ -3,7 +3,7 @@ from evolutionary_algorithms_examples.travelling_salesman_problem.travelling_sal
 from evolutionary_algorithms_examples.travelling_salesman_problem.plot_tour import tour
 from evolutionary_algorithms.genetic_algorithm import GA
 from evolutionary_algorithms.particle_swarm_optimization import PSO
-
+from evolutionary_algorithms.simulated_annealing import SA
 
 def main():
 
@@ -32,24 +32,40 @@ def main():
     #
     # return solution_best, run_time
 
-    type_number_of_variables_pso = {"real1D": [len(model_data["locations_x"])]}
-    solution_method = PSO(cost_function=cost_func,
-                          type_number_of_variables=type_number_of_variables_pso,
-                          min_range_of_variables=0,
-                          max_range_of_variables=1,
-                          max_iteration=200,
-                          number_of_particles=200,
-                          inertia_rate=0.7298,
-                          inertia_damping_rate=1,
-                          personal_learning_rate=1.4962,
-                          global_learning_rate=1.4962,
-                          tempo_limit=True,
-                          plot_cost_function=True,
-                          mutation_for_real=True,
-                          mutation_for_permutation=True)
+    # type_number_of_variables_pso = {"real1D": [len(model_data["locations_x"])]}
+    # solution_method = PSO(cost_function=cost_func,
+    #                       type_number_of_variables=type_number_of_variables_pso,
+    #                       min_range_of_variables=0,
+    #                       max_range_of_variables=1,
+    #                       max_iteration=200,
+    #                       number_of_particles=200,
+    #                       inertia_rate=0.7298,
+    #                       inertia_damping_rate=1,
+    #                       personal_learning_rate=1.4962,
+    #                       global_learning_rate=1.4962,
+    #                       tempo_limit=True,
+    #                       plot_cost_function=True,
+    #                       mutation_for_real=True,
+    #                       mutation_for_permutation=True)
+    #
+    # solution_best, run_time = solution_method.run()
+    # tour(solution_best, model_data, "pso")
+    #
+    # return solution_best, run_time
+
+
+    type_number_of_variables_sa = {"permutation1D": [len(model_data["locations_x"])]}
+
+    solution_method = SA(cost_function=cost_func,
+                         type_number_of_variable=type_number_of_variables_sa,
+                         max_iteration=2500,
+                         max_sub_iteration=20,
+                         initial_temp=2,
+                         temp_reduction_rate=0.99,
+                         plot_solution=True)
 
     solution_best, run_time = solution_method.run()
-    tour(solution_best, model_data, "pso")
+    tour(solution_best, model_data, "sa")
 
     return solution_best, run_time
 
